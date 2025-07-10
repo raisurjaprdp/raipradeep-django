@@ -1,0 +1,30 @@
+/* In static/website/css/style.css */
+
+.avatar {
+  max-width: 150px;
+  height: auto;
+}
+
+.hero {
+  min-height: 90vh;
+  padding-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+
+  h1, h2 {
+    font-size: 1.25rem;
+  }
+
+  .hero {
+    padding-top: 60px;
+    text-align: center;
+  }
+
+  iframe {
+    height: 400px;
+  }
+}

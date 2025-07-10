@@ -1,0 +1,179 @@
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --primary: #0d6efd;
+  --btn-bg: #0d6efd;
+  --btn-text: #ffffff;
+  --section-bg: transparent;
+}
+
+body.dark-mode {
+  --bg: #121212;
+  --text: #ffffff;
+  --primary: #8f94fb;
+  --btn-bg: #6c63ff;
+  --btn-text: #ffffff;
+  --section-bg: #1e1e1e;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ------------------ Navbar ------------------ */
+nav.navbar {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .navbar .navbar-brand {
+  color: var(--text) !important;
+}
+
+nav.navbar .nav-link {
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+
+nav.navbar .nav-link:hover,
+nav.navbar .nav-link.active {
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+/* ------------------ Sections ------------------ */
+section {
+  background-color: var(--section-bg);
+  color: var(--text);
+  padding: 4rem 0;
+  scroll-margin-top: 80px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Override Bootstrap or fixed background classes */
+body.dark-mode .bg-light,
+body.dark-mode .bg-white,
+body.dark-mode .about-content,
+body.dark-mode .card,
+body.dark-mode .timeline-item {
+  background-color: var(--section-bg) !important;
+  color: var(--text) !important;
+}
+
+/* Ensure text inside sections adapts in dark mode */
+body.dark-mode section h1,
+body.dark-mode section h2,
+body.dark-mode section h3,
+body.dark-mode section p,
+body.dark-mode section a,
+body.dark-mode section li,
+body.dark-mode section span {
+  color: var(--text) !important;
+}
+
+/* Fix for text-muted in dark mode */
+body.dark-mode .text-muted {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ------------------ Hero Section ------------------ */
+.hero {
+  height: 100vh;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ------------------ Avatar ------------------ */
+.avatar {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+/* ------------------ Buttons ------------------ */
+.btn-primary {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border-color: var(--btn-bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* ------------------ Project Cards ------------------ */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .card {
+  background-color: var(--section-bg) !important;
+  color: var(--text) !important;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .card-title,
+body.dark-mode .card-text {
+  color: var(--text) !important;
+}
+
+/* ------------------ Modals ------------------ */
+.modal-content {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .modal-content {
+  background-color: var(--section-bg) !important;
+  color: var(--text) !important;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .modal-title,
+body.dark-mode .modal-body p {
+  color: var(--text) !important;
+}
+
+body.dark-mode .modal-body a {
+  color: var(--primary) !important;
+  text-decoration: underline;
+}
+
+/* Make close button visible in dark mode */
+body.dark-mode .btn-close {
+  filter: invert(1);
+}
+
+/* ------------------ Optional Components ------------------ */
+body.dark-mode .dropdown-menu,
+body.dark-mode .alert {
+  background-color: var(--section-bg);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ------------------ OPTIONAL: Icon Styling ------------------ */
+/*
+body.dark-mode i,
+body.dark-mode .fa,
+body.dark-mode .fas,
+body.dark-mode .fab {
+  color: var(--text) !important;
+}
+*/
