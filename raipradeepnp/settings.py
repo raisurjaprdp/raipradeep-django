@@ -22,6 +22,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -45,6 +46,17 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
+
+# No need to add app static folders here unless you have a global static dir
+STATICFILES_DIRS = []  # Or leave it out
+
+
+# Use WhiteNoise in production
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'website' / 'static']
