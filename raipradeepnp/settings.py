@@ -75,10 +75,8 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
-ALLOWED_HOSTS = [
-    'raipradeep.com.np',
-    'www.raipradeep.com.np',
-]
+ALLOWED_HOSTS = ['*']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
