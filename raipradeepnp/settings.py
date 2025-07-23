@@ -1,8 +1,7 @@
 # settings.py
 from pathlib import Path
 from dotenv import load_dotenv
-load_dotenv()
-
+load_dotenv()  
 import os
 from django.contrib.messages import constants as messages
 ROOT_URLCONF = 'raipradeepnp.urls'
@@ -18,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website',
+    'hcaptcha',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +67,20 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+
+# Add your reCAPTCHA v3 keys from https://www.google.com/recaptcha/admin
+#RECAPTCHA_PUBLIC_KEY = '6LewQIcrAAAAAETOqSrULrA96cXX4plKT0_nnY7R'
+#RECAPTCHA_PRIVATE_KEY = '6LewQIcrAAAAAFGdnhYmTuAFxkUbSmfg6QY-jFh8'
+#RECAPTCHA_DEFAULT_ACTION = 'generic'
+#RECAPTCHA_REQUIRED_SCORE = 0.5  # Adjust threshold as needed
+
+# Optional for reCAPTCHA v3 (if using score)
+#RECAPTCHA_DEFAULT_ACTION = 'contact_form'
+
+HCAPTCHA_SITEKEY = '88a6c2a8-412a-4714-9fc2-ffa48a5cab9c'
+HCAPTCHA_SECRET = 'ES_54b8ca2551e845e99a015ce016b96c46'
+
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-secondary',

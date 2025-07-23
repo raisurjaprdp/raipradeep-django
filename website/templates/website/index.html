@@ -242,19 +242,26 @@
 
 <section id="contact" class="bg-light py-5" data-aos="fade-up">
   <div class="container">
+   
     <h2 class="text-center mb-4">Contact Me</h2>
-    {% for msg in messages %}<div class="alert {{ msg.tags }}">{{ msg }}</div>{% endfor %}
+    {% for msg in messages %}
+      <div class="alert {{ msg.tags }}">{{ msg }}</div>
+    {% endfor %}
     <form method="post" novalidate class="mt-4 mx-auto">
       {% csrf_token %}
       <div class="mb-3">{{ form.name.label_tag }}{{ form.name }}{{ form.name.errors }}</div>
       <div class="mb-3">{{ form.email.label_tag }}{{ form.email }}{{ form.email.errors }}</div>
       <div class="mb-3">{{ form.message.label_tag }}{{ form.message }}{{ form.message.errors }}</div>
+
+      <!-- This renders the invisible reCAPTCHA input -->
+      
+      {{ form.hcaptcha.errors }}
+      {{ form.hcaptcha }}   {# ✅ This renders the hCaptcha widget #}
       <div class="text-center">
         <button type="submit" class="btn btn-primary" id="submitBtn">
-  <span id="submitSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-  <span id="submitText">Send Message</span>
-</button>
-
+          <span id="submitSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+          <span id="submitText">Send Message</span>
+        </button>
       </div>
     </form>
   </div>
@@ -289,6 +296,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'website/vendor/aos/aos.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -329,31 +339,31 @@
   });
 </script>
 <script>
+ 
   document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    const submitBtn = document.getElementById("submitBtn");
-    const spinner = document.getElementById("submitSpinner");
-    const submitText = document.getElementById("submitText");
+  const form = document.querySelector("form");
+  const submitBtn = document.getElementById("submitBtn");
+  const spinner = document.getElementById("submitSpinner");
+  const submitText = document.getElementById("submitText");
 
-    // Show spinner on form submit
-    form.addEventListener("submit", function () {
-      submitBtn.disabled = true;
-      spinner.classList.remove("d-none");
-      submitText.textContent = "Sending...";
-    });
+  // Select all inputs, textareas and submit button (except CSRF token)
+  const inputs = form.querySelectorAll("input:not([name=csrfmiddlewaretoken]), textarea");
+  const buttons = form.querySelectorAll("button[type=submit]");
 
-    // Hide error messages when user types
-    const inputs = form.querySelectorAll("input, textarea");
-    inputs.forEach(input => {
-      input.addEventListener("input", function () {
-        const errorDiv = this.parentElement.querySelector(".errorlist");
-        if (errorDiv) {
-          errorDiv.style.display = "none";
-        }
-      });
-    });
+  form.addEventListener("submit", function () {
+    // Make inputs readonly to keep them submitted
+    inputs.forEach(el => el.readOnly = true);
+
+    // Disable buttons
+    buttons.forEach(btn => btn.disabled = true);
+
+    spinner.classList.remove("d-none");
+    submitText.textContent = "Sending...";
   });
+});
+
 </script>
+
 
 </body>
 </html>
