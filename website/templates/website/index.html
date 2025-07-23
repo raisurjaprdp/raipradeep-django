@@ -339,30 +339,44 @@
   });
 </script>
 <script>
- 
   document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-  const submitBtn = document.getElementById("submitBtn");
-  const spinner = document.getElementById("submitSpinner");
-  const submitText = document.getElementById("submitText");
+    const form = document.querySelector("form");
+    const submitBtn = document.getElementById("submitBtn");
+    const spinner = document.getElementById("submitSpinner");
+    const submitText = document.getElementById("submitText");
 
-  // Select all inputs, textareas and submit button (except CSRF token)
-  const inputs = form.querySelectorAll("input:not([name=csrfmiddlewaretoken]), textarea");
-  const buttons = form.querySelectorAll("button[type=submit]");
+    // Exclude CSRF token field
+    const inputs = form.querySelectorAll("input:not([name=csrfmiddlewaretoken]), textarea");
+    const buttons = form.querySelectorAll("button[type=submit]");
 
-  form.addEventListener("submit", function () {
-    // Make inputs readonly to keep them submitted
-    inputs.forEach(el => el.readOnly = true);
+    form.addEventListener("submit", function () {
+      // Make inputs readonly and disable buttons
+      inputs.forEach(el => el.readOnly = true);
+      buttons.forEach(btn => btn.disabled = true);
 
-    // Disable buttons
-    buttons.forEach(btn => btn.disabled = true);
+      spinner.classList.remove("d-none");
+      submitText.textContent = "Sending...";
+    });
 
-    spinner.classList.remove("d-none");
-    submitText.textContent = "Sending...";
+    // Re-enable inputs and hide error messages on user input
+    inputs.forEach(input => {
+      input.addEventListener("input", function () {
+        // Make the field editable again if needed
+        input.readOnly = false;
+
+        // Re-enable the submit button
+        buttons.forEach(btn => btn.disabled = false);
+
+        // Hide error messages if any
+        const errorDiv = this.parentElement.querySelector(".errorlist");
+        if (errorDiv) {
+          errorDiv.style.display = "none";
+        }
+      });
+    });
   });
-});
-
 </script>
+
 
 
 </body>
